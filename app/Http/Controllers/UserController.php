@@ -54,13 +54,14 @@ class UserController extends Controller
               $newSessionData = array(
                 'username' => $userData['email'],
                 'userid' => $userData['id'],
-                'userrole' => $sessionData['userrole']);
+                'userrole' => $sessionData['userrole'],
+                'employeeName' =>  $userData['name']);
               Session::put('userdata',$newSessionData);
               $employee = EmployeeModel::getEmployeeData($sessionData['userid']);
               if($employee && $employee -> EmpPhotoPath){
                   $employee->EmpPhotoPath = '/images/uploads/'.$employee->EmpPhotoPath;
               }
-              return view('/user/profile',['employeeInfo'=> $employee]);
+              return view('/user/profile',['employeeInfo'=> $employee,'empName' => $sessionData["employeeName"]]);
           break;
       }
     }

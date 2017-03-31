@@ -77,7 +77,7 @@
                     </li>
                     <li id="empTaskRef" class="cursor">
                         <a href="javascript:void(0)">
-                            <i class="fa fa-tasks"></i>
+                            <i class="pe-7s-menu"></i>
                             <p>Tasks</p>
                         </a>
                     </li>
