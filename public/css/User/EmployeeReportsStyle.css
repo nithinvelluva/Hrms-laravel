@@ -1,0 +1,33 @@
+.sepClass {
+    padding-top: 35px;
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+}
+
+.labelClass {
+    width: 130px;
+}
+
+#printTitle {
+    color: #e78f08;
+    font-size: large;
+}
+
+.exportIcon {
+    border: none !important;
+    outline: none !important;
+    margin: 10px;
+    cursor: pointer;
+    color: #000 !important;
+}
+
+.exportIcon a:hover{
+    background-color:#000 !important;
+}
+
+#ErrMsgRslt {
+    padding-left: 20px;
+}

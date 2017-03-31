@@ -1,0 +1,95 @@
+.modal-backdrop{
+  display: none !important;
+}
+.main-panel {
+  width: 100% !important;
+}
+
+﻿.disablediv {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.login-card{
+    padding: 20px;
+    max-width: 500px;
+    background-color: #FFFFFF;
+    margin: 0 auto 10px;
+    border-radius: 2px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+  }
+
+.WaitdivPage {
+    display: none;
+    position: fixed;
+    top: 70%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 40%;
+    height: 50%;
+}
+
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font: inherit;
+    color: #000;
+}
+
+.users-list-header{
+  float: right;
+}
+
+.cardContainer {
+    padding-top: 15px;
+}
+
+.usrAvatar {
+    height: 140px;
+    width: 90%;
+    cursor: pointer;
+    margin-top: 5%;
+}
+
+.matcard {
+    width: 100%;
+    max-width: 90%;
+    transition: 0.3s;
+    cursor: pointer;
+    display: inline-block;
+    float: none;
+    background: #ffffff;
+    text-align: center;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);
+    margin-bottom: 20px;
+}
+
+.matcard:hover {
+    box-shadow: 0 4px 8px 0 #777;
+}
+
+#employeeTable{
+    border: 1px solid #1c94c4;
+    background-color: white;
+    text-wrap: inherit;
+}
+
+#employeeTable tr:hover {
+    background-color: ivory;
+    border-color: #1c94c4;
+}
+#employeeTable th{
+  text-align: center;
+}
+#employeeTable_filter label{
+  font-size: 0;
+}
+#employeeTable_filter input[type=search]{
+  font-size: 12px;
+  
+}
+.tableHeader{
+  color: #1c94c4;
+}

@@ -1,0 +1,238 @@
+﻿.disablediv {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.waitIconDiv {
+    position: fixed;
+    top: 80%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 40%;
+    height: 50%;
+}
+
+.waitIconDivRprt {
+    display: none;
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 40%;
+    height: 50%;
+}
+
+.hide-calendar .ui-datepicker-calendar {
+    display: none;
+}
+
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font: inherit;
+    color: #000;
+}
+
+.top-margin {
+    padding-top: .5em;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+}
+
+.usr_drpdwn {
+    display: block;
+    padding: 5px 20px;
+    color: #fff;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.sidebar .nav ul.nav-submenu li > a {
+    color: #000;
+}
+
+.cursor {
+    cursor: pointer;
+    width: 100%;
+}
+
+.modal-backdrop.in {
+    opacity: 0;
+}
+
+.modal-backdrop {
+    position: relative;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #000;
+}
+
+#CapturePhotoDiv .modal-content {
+    width: 90%;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+#CapturePhotoDiv .modal-body {
+    padding: 0px;
+}
+
+.capturePreviewDiv {
+    display: none;
+}
+
+#XwebcamXobjectX {
+    width: 100%;
+}
+
+#userPassword {
+    width: 90%;
+}
+
+#UserProfileSubmitModel .modal-content {
+    width: 90%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.imgContainer .img {
+    clear: both;
+    float: none !important;
+}
+
+.errLabel {
+    display: none;
+}
+
+#LvReprtTable {
+    border: 1px solid #1c94c4;
+    background-color: white;
+    text-wrap: inherit;
+}
+
+#LvReprtTable th{
+  text-align: center;
+}
+
+.TableDivLvRprt {
+    overflow: auto;
+}
+
+.txt_area {
+    height: auto;
+    min-height: 100px;
+}
+
+#cntctAdmin {
+    height: 30px;
+    width: 30px;
+    display: none;
+}
+
+#SentLeaveQueryModal .modal-content {
+    width: 90%;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+#EditLeaveModal .modal-content {
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#EditLeaveModal {
+    padding-right: 0px;
+}
+
+#statiDiv {
+    overflow: auto;
+}
+
+#ErrnwPwdCnfm {
+    display: none;
+}
+
+/*Attendance View */
+
+#CheckPuchInfo .modal-content{
+  width: 100%;
+  min-width: 700px;
+}
+
+#ResultTableDiv {
+    overflow: auto;
+}
+
+#punchTable tbody,th{
+    text-align: center;
+}
+
+#punchTable tr:hover {
+    background-color: ivory;
+    border-color: #1c94c4;
+}
+
+.col-header, .tableHeader {
+    color: #1c94c4;
+}
+
+.gridTableAtt {
+    border: 1px solid #1c94c4;
+    background-color: white;
+    text-wrap: inherit;
+}
+
+    .gridTableAtt td {
+        border-bottom: 1px solid #1c94c4;
+        border-top: 1px solid #1c94c4;
+        border-left: 1px solid #1c94c4;
+        border-right: 1px solid #1c94c4;
+    }
+
+#LvStatiTable th{
+  text-align: center;
+}
+
+#LvStatiTable tbody{
+text-align: center;
+}
+
+@media screen and (max-width: 450px) {
+    .waitIconDiv {
+        position: fixed;
+        /*top: 70%;*/
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        width: 50%;
+        height: 50%;
+    }
+
+    .waitIconDivRprt {
+        display: none;
+        position: fixed;
+        /*top: 70%;*/
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        width: 50%;
+        height: 50%;
+    }
+
+    #CheckPuchInfo .modal-content{
+      width: 100%;
+      min-width: 300px;
+    }
+}
