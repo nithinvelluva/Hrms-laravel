@@ -29,7 +29,7 @@ class UserController extends Controller
           break;
         case 2:
             $employee = EmployeeModel::getEmployeeData($sessionData["userid"]);
-            if(!empty($employee)){
+            if(!empty($employee)  && $employee -> EmpPhotoPath){
               $employee->EmpPhotoPath = '/images/uploads/'.$employee->EmpPhotoPath;
             }
             return view('/user/profile',['employeeInfo'=> $employee,'empName' => $sessionData["employeeName"]]);

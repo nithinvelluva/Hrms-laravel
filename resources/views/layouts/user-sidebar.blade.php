@@ -106,19 +106,19 @@
                                 <ul class="dropdown-menu">
                                     <li class="cursor"><a href="{{ url('/user/changepassword') }}"id="chngPwdRef">
                                       <i class="fa fa-cog" aria-hidden="true"></i>&nbsp;Change Password</a>
-                                    </li>
-                                    <li class="cursor">
+                                  </li>
+                                  <li class="cursor">
                                       <a href="{{ url('account/logout') }}" id="signoutRef">
-                                      <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Sign Out</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+                                          <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Sign Out</a>
+                                      </li>
+                                  </ul>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </nav>
 
-            <div class="content container-fluid">
+              <div class="content container-fluid">
                 <div class="row">
                     <div class="col-md-12">
                         @yield('content')
@@ -132,6 +132,6 @@
 <script>
     $.ajaxSetup({
       headers: { 'X-CSRF-Token' : $('meta[name=csrf-token]').attr('content') }
-    });
+  });
 </script>
 <script type="text/javascript" src="{{asset('js/app/user/user-sidebar.js')}}"></script>
