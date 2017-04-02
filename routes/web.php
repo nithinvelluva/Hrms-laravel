@@ -41,6 +41,9 @@ Route::get('/user/leave','UserController@getApplyLeave');
 //GET user/leavereports
 Route::get('/user/leavereports','UserController@getLeaveReports');
 
+//GET user/employeereports
+Route::get('/user/employeereports','UserController@getEmployeeReports');
+
 //POST userimage uplaod
 Route::post('/user/UploadFile','UserController@UploadFile');
 
@@ -68,6 +71,8 @@ Route::post('/user/GetLeaveStatistics','UserController@GetLeaveStatistics');
 Route::post('/user/GetLeaveDetails','UserController@postLeaveReports');
 
 Route::post('/user/AddLeave','UserController@AddLeave');
+
+Route::post('/user/postUserReport','UserController@postUserReport');
 
 //POST route
 Route::post('/loginSubmit', 'AccountController@loginPost');

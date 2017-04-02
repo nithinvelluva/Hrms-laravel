@@ -28,7 +28,7 @@
                 <label class = "control-label hrms-required-field">Current Password</label>
             </div>
             <div class="col-lg-6 col-md-6">
-                <input type="password" class="form-control input-field" id="currntPwd"/>
+                <input type="password" class="form-control input-field" id="currntPwd" name="currntPwd" autocomplete="off" />
                 <label id="ErrPwdCurr" class="text-danger errLabel">Enter current password !!</label>
             </div>
         </div>

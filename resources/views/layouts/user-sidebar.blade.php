@@ -69,8 +69,8 @@
                             </ul>
                         </div>
                     </li>
-                    <li id="empReportRef" onclick="navigateTo(REPORTS)" class="cursor hidden">
-                        <a href="javascript:void(0)">
+                    <li id="empReportRef" class="cursor">
+                        <a href="{{ url('/user/employeereports') }}">
                             <i class="pe-7s-news-paper"></i>
                             <p>Reports</p>
                         </a>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Redirect;
 use Session;
 use App\EmployeeModel;
+use App\Helpers\Helper;
 use Illuminate\Support\Facades\Input;
 use App\UserModel;
 use App\AttendanceModel;
@@ -313,7 +314,7 @@ class UserController extends Controller
           $sessionData = Session::get('userdata');
           $empId = $sessionData["userid"];
 
-          $searchData = [ 'startDate' => $request['StartDate'],'endDate' => $request['EndDate'],'EmpId' => $empId ];
+          $searchData = [ 'FromDate' => $request['StartDate'],'ToDate' => $request['EndDate'],'EmpId' => $empId ];
           $searchResult = AttendanceModel::GetEmpPunchDetails($searchData,false);
 
           return response()->json(array('searchData'=> $searchResult), 200);
@@ -458,4 +459,72 @@ class UserController extends Controller
     }
   }
 
+  public function getEmployeeReports(){
+    if(Session::get('userdata')){
+      $sessionData = Session::get('userdata');
+      switch ($sessionData["userrole"]) {
+        case 1:
+           return Redirect::to('/employees');
+          break;
+        case 2:
+            return view('/user/employeereports',array('empName' => $sessionData["employeeName"]));
+          break;
+      }
+    }
+    else{
+      return Redirect::to('/');
+    }
+  }
+
+  public function postUserReport(Request $request){
+    if(Session::get('userdata')){
+      $sessionData = Session::get('userdata');
+      switch ($sessionData["userrole"]) {
+        case 1:
+           return Redirect::to('/employees');
+          break;
+        case 2:
+            $userrole = $sessionData["userrole"];
+            $empId = $sessionData["userid"];
+
+            $month = $request -> month;
+            $year = $request -> year;
+
+            $frmDt = Carbon::createFromDate($year, $month, 1);
+            $toDt = Carbon::createFromDate($year, $month, $frmDt->daysInMonth)->addDays(1);
+
+            $searchData = ['EmpId' => $empId,'FromDate' => $frmDt,'ToDate' => $toDt];
+
+            $punchList = AttendanceModel::GetEmpPunchDetails($searchData,true);
+            $lvList = LeaveModel::GetEmployeeLeaveDetails($userrole,$searchData,true);
+
+            if($punchList && $lvList){
+              $lvcount = 0.0;$attnCnt = 0.0;
+              $yearLst;
+              $lvLst;
+              foreach ($lvList as $lvItem) {
+                  $lvLst = $lvItem['RtrnArry']['leaves'];
+                  $lvcount = $lvcount + $lvLst;
+              }
+
+              foreach ($punchList as $attItem) {
+                  $attnCnt = $attnCnt + $attItem->Duration;
+              }             
+
+              $UserReportModel['totalDays'] = $frmDt->daysInMonth;
+              $UserReportModel['holidays'] = $UserReportModel['totalDays'] - Helper::GetBusinessDaysCount($frmDt, $toDt);
+              $UserReportModel['leaveDays'] = $lvcount;
+              $UserReportModel['workingDays'] = $UserReportModel['totalDays'] - $UserReportModel['holidays'];
+              $UserReportModel['workingHours'] = $attnCnt;
+              $UserReportModel['activeDays'] = number_format(($attnCnt / 8), 2, '.', ',');
+              
+              return response()->json(array('userReport'=>$UserReportModel),200);
+            }
+          break;
+      }
+    }
+    else{
+      return Redirect::to('/');
+    }
+  }
 }

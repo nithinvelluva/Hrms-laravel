@@ -24,7 +24,7 @@ class AccountController extends Controller
           }
         }
         else{
-          return view('hrmslogin');
+          return view('hrmslogin')->with('errormessage', '');;
         }
     }
 
@@ -38,7 +38,9 @@ class AccountController extends Controller
         $user = UserModel::validateUser($data);
 
         if(empty($user)){
-          return Redirect::to('/')->with('errormessage', 'Invalid credentials');
+          // return Redirect::to('/')->with('errormessage', 'Invalid credentials');
+          // return Redirect::back()->with('errormessage', 'Invalid credentials');
+          return Redirect::back()->withErrors('errormessage', 'Invalid credentials')->withInput();
         }
         else{
             $stordPwd = $user -> password;
@@ -62,7 +64,9 @@ class AccountController extends Controller
                   }
               }
               else{
-                return Redirect::to('/')->with('errormessage', 'Invalid credentials');
+                return Redirect::back()->withErrors('errormessage', 'Invalid credentials')->withInput();
+                // return Redirect::to('/')->with('errormessage', 'Invalid credentials');
+                // return Redirect::back()->with('errormessage', 'Invalid credentials');
               }
         }
     }

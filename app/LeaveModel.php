@@ -30,6 +30,15 @@ class LeaveModel extends Model
       }
       else{
         if($isReport){//report
+          $applLeaveData = DB::table('employeeleaveinfo AS eli')
+                            ->join('leavetype AS lt','eli.LeaveType', '=', 'lt.Id')
+                            ->where(['EmpId' => $lvData['EmpId']])
+                            ->whereNotIn('eli.Status',[1,2])
+                            ->whereBetween('eli.FromDate', [$lvData['FromDate'],$lvData['ToDate']])
+                            ->orWhereBetween('eli.ToDate', [$lvData['FromDate'],$lvData['ToDate']])
+                            ->orderBy('eli.FromDate')
+                            ->get(['eli.EmpId','eli.FromDate','eli.ToDate','lt.Type','eli.Status',
+                                  'eli.Comments','eli.Id AS LeaveID','eli.DurationType','lt.Id AS LeaveTypeID']);
         }
         else{
           $applLeaveData = DB::table('employeeleaveinfo AS eli')

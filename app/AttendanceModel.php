@@ -31,18 +31,22 @@ class AttendanceModel extends Model
   public static function GetEmpPunchDetails($searchData,$isReport = false){
         $sdate = "";
         $edate = "";
-        if (!is_null($searchData['startDate']) && !is_null($searchData['endDate']))
+        if (!is_null($searchData['FromDate']) && !is_null($searchData['ToDate']))
         {
-            $sdate = Carbon::parse($searchData['startDate'])->format('Y-m-d');
-            $edate = Carbon::parse($searchData['endDate'])->addDays(1)->format('Y-m-d');
+            $sdate = Carbon::parse($searchData['FromDate'])->format('Y-m-d');
+            $edate = Carbon::parse($searchData['ToDate'])->addDays(1)->format('Y-m-d');
          }
-        else if (is_null($searchData['endDate']))
+        else if (is_null($searchData['ToDate']))
         {
-           $sdate = Carbon::parse($searchData['startDate'])->format('Y-m-d');
+           $sdate = Carbon::parse($searchData['FromDate'])->format('Y-m-d');
            $edate = Carbon::now();
         }
       if($isReport){
-          $searchResult = [];
+        $searchResult =  DB::table('attendance')
+                       ->where('EmpId','=',$searchData['EmpId'])
+                       ->whereBetween('PunchinTime', [$sdate,$edate])
+                       ->orderBy('PunchinTime')
+                       ->get(['PunchinTime','PunchoutTime']);
       }
       else{
           $searchResult =  DB::table('attendance')
@@ -50,6 +54,7 @@ class AttendanceModel extends Model
                          ->whereBetween('PunchinTime', [$sdate,$edate])
                          ->orderBy('PunchinTime')
                          ->get(['PunchinTime','PunchoutTime']);
+        }
             if($searchResult){
                 $pin = Carbon::now();
                 $pout = Carbon::now();
@@ -68,7 +73,6 @@ class AttendanceModel extends Model
                 $resultItem -> Duration = $timespan;
               }
             }
-      }
       return $searchResult;
   }
 }
