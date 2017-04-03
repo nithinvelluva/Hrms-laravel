@@ -39,6 +39,7 @@ function GetLeaveStatistics(view,leaveType) {
         var response = data.leaveData[0];
         if(view)
         {
+            // $('#LeaveStatiDiv').modal('show');
             LeaveStatiTable.clear().draw();
             LeaveStatiTable.row.add({
                 0: "Casual",
@@ -174,7 +175,7 @@ function ApplyLeave(){
     }
 }
 $(document).ready(function () {
-    navigateTo(LEAVES );
+    navigateTo(LEAVES );    
 
     LeaveStatiTable = $('#LvStatiTable').DataTable({ "pageLength": 5, "bFilter": false,
         "bInfo": false,"bPaginate": false, "bLengthChange": false, "ordering": false,

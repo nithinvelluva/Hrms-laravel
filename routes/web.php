@@ -18,6 +18,12 @@ Route::get('/account/logout','AccountController@logout');
 //POST route
 Route::post('/loginSubmit', 'AccountController@loginPost');
 
+Route::get('/account/forgotpassword','AccountController@getForgotPassword');
+
+Route::post('/account/forgotpassword','AccountController@postForgotPassword');
+
+Route::get('/account/resetpassword','AccountController@getResetPassword');
+
 /*Admin routes*/
 Route::get('/employees','EmployeeController@getUserData');
 

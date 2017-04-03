@@ -8,7 +8,7 @@ use Hash;
 
 class UserModel extends Model
 {
-    public static function validateUser($data){
+  public static function validateUser($data){
       $user = DB::table('users')->where($data)->first();
       return $user;
     }
@@ -37,5 +37,11 @@ class UserModel extends Model
         }
       }
       return 'ERROR';
+    }
+
+    public static function createResetPasswordToken($data){
+      DB::table('password_reset_token')
+          ->where('EmpId',$data['EmpId'])
+          ->insert($data);
     }
 }

@@ -63,7 +63,7 @@
                                 Login
                             </button>
 
-                            <a class="btn btn-link hidden" href="{{ route('password.request') }}">
+                            <a class="btn btn-link" href='{{url('/account/forgotpassword')}}'>
                                 Forgot Your Password?
                             </a>
                         </div>
