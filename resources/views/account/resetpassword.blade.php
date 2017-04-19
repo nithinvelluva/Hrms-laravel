@@ -11,6 +11,8 @@
                         <img alt="Progress" src="{{asset('images/wait_icon.gif')}}" width="50" height="50" id="imgProg" />
                     </div>
                     <div class="row">
+                        <input type="hidden" id="token" value="{{$token}}">
+                        <input type="hidden" id="empId" value="{{$empId}}">
                         <label for="email" class="col-md-4 control-label">New password</label>
 
                         <div class="col-md-6">
@@ -24,7 +26,7 @@
                         <label for="email" class="col-md-4 control-label">Confirm password</label>
 
                         <div class="col-md-6">
-                            <input id="newPwdCnfrm" type="password" class="form-control" name="newPwdCnfrm" required>
+                            <input id="nwPwdCnfm" type="password" class="form-control" name="newPwdCnfrm" required>
 
                             <label class="text-danger errLabel" id = "nwPwdCnfrmError"></label>
                         </div>
@@ -35,6 +37,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 buttonRow hidden">
                             Know your password ? <a href="{{ url('/') }}" class="hrefLink">Login</a>
+                            <a href="{{ url('/account/resetpasswordsuccess') }}" class="hidden" id="success-ref"></a>
                         </div>                        
                     </div>
                 </div>

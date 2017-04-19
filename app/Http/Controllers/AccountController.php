@@ -11,6 +11,7 @@ use App\Helpers\Helper;
 use Hash;
 use Mail;
 use URL;
+use Carbon\Carbon;
 
 class AccountController extends Controller
 {
@@ -89,7 +90,6 @@ class AccountController extends Controller
     else{
       return view('/account/sentresetlink');
     }
-
   }
 
   public function postForgotPassword(Request $request){
@@ -107,8 +107,10 @@ class AccountController extends Controller
     else{
       $response = '';
       $status = 0;
-      $email = $request->email;
-      $userData = UserModel::validateUser(['email' => $email]);
+
+      $email = $request->email;      
+      $userData = UserModel::validateUser(['email' => $email]); 
+
       if(empty($userData)){
         $response = 'User not exists';
         $status = 404;
@@ -117,12 +119,12 @@ class AccountController extends Controller
         $toEmail = $email;
         // Mail::to($toEmail)->send(new sentEmail());
         
-        $token = time().'_'.$userData->email.'_'.$userData->id;        
+        $token = Carbon::now().'_'.$userData->email.'_'.$userData->id;  
 
-        $data = ['EmpId' => $userData->id,'reset_token' => $token,'created_at' => time()];
+        $data = ['EmpId' => $userData->id,'reset_token' => $token,'created_at' => Carbon::now()->addHours(4)];
         UserModel::createResetPasswordToken($data);
 
-        $resetUrl = URL::to('/account/resetpassword',array('user'=>$data));
+        $resetUrl = URL::to('/account/resetpassword',['token'=>$token,'empId'=>$userData->id]);
 
         $mailData = ['email' => $userData->email,'name' => $userData->name,
         'subject' => 'Reset password','resetToken' => $resetUrl];
@@ -137,8 +139,44 @@ class AccountController extends Controller
     }
   }
 
-  public function getResetPassword(Request $request){
-    print_r($request->user);
-    return view('/account/resetpassword');
+  public function getResetPasswordSuccess(){
+    return view('/account/resetpasswordsuccess');     
+  }
+
+  public function getResetPasswordError(){
+    return view('/account/resetpasswordlinkerror');
+  }
+
+  public function getResetPassword($userToken = null,$empId = null){
+
+    if($userToken && $empId){
+      $tokenData = ['EmpId' => $empId , 'reset_token' => $userToken];
+      $isValid = UserModel::validateResetPasswordToken($tokenData);      
+
+      if($isValid){        
+        return view('/account/resetpassword',['token'=>$userToken,'empId'=>$empId]);
+      }
+      else{
+        //token expired..
+        return Redirect::to('/account/resetpasswordlinkerror');
+      }
+    }
+  }
+
+  public function postResetPassword(Request $request){
+    $response = "ERROR";
+    $status = 404;
+
+    if($request){
+      $updateData = ['id' => $request->empId,'password' => $request->nwPwd];
+      $tokenData = ['EmpId' => $request->empId,'reset_token' => $request->token];
+
+      UserModel::resetUserPassword($updateData);
+      UserModel::updateResetPasswordToken($tokenData);
+
+      $response = "OK";
+      $status = 200;
+    }
+    return response()->json(array('response' => $response,'status' => $status),200);    
   }
 }

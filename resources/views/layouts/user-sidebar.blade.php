@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{{asset('css/lobibox.css')}}" />
     <link rel="stylesheet" href="{{asset('css/jquery.dataTables.min.css')}}" />
     <link rel="stylesheet" href="{{asset('css/responsive.dataTables.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/calendar.css')}}" />
 
     <script src="{{ asset('js/jquery-ui-1.11.4.min.js') }}"></script>
     <script src="{{ asset('js/lobibox.js') }}"></script>

@@ -22,7 +22,15 @@ Route::get('/account/forgotpassword','AccountController@getForgotPassword');
 
 Route::post('/account/forgotpassword','AccountController@postForgotPassword');
 
-Route::get('/account/resetpassword','AccountController@getResetPassword');
+Route::get('/account/resetpassword/{token}/{empId}','AccountController@getResetPassword');
+
+Route::post('/account/resetpassword','AccountController@postResetPassword');
+
+// Route::get('/account/resetpasswordsuccess','AccountController@getResetPasswordSuccess');
+Route::get('/account/resetpasswordsuccess','AccountController@getResetPasswordSuccess');
+
+Route::get('/account/resetpasswordlinkerror','AccountController@getResetPasswordError');
+
 
 /*Admin routes*/
 Route::get('/employees','EmployeeController@getUserData');

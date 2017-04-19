@@ -10,7 +10,7 @@
                     <div class="waitIconDiv col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center">
                         <img alt="Progress" src="{{asset('images/wait_icon.gif')}}" width="50" height="50" id="imgProg" />
                     </div>
-                    <div class="row">
+                    <div class="row">                        
                         <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                         <div class="col-md-6">
